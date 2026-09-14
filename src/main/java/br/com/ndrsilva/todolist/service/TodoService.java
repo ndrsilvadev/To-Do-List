@@ -23,7 +23,7 @@ public class TodoService {
     }
 
     public List<Todo> list() {
-        return todoRepository.findAllOrderPriorityDescTitleAsc();
+        return todoRepository.findAllByOrderByPriorityDescTitleAsc();
     }
 
     public List<Todo> update(Todo todo) {

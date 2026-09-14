@@ -8,5 +8,5 @@ import br.com.ndrsilva.todolist.entity.Todo;
 
 
 public interface TodoRepository  extends JpaRepository<Todo, Long>{
-    List<Todo> findAllOrderPriorityDescTitleAsc();
+    List<Todo> findAllByOrderByPriorityDescTitleAsc();
 }

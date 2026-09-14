@@ -6,6 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "todos")
@@ -15,6 +20,11 @@ public class Todo {
     @Column(name = "id")
     private Long id;
 
+    @NotBlank(message = "O título é obrigatório.")
+    @Size(
+        max = 100,
+        message = "O titulo deve ter no máximo 100 caracteres."
+    )
     @Column(
         name = "title",
         nullable = false,
@@ -22,6 +32,11 @@ public class Todo {
     )
     private String title;
 
+    @NotBlank(message = "A descrição é obrigatório.")
+    @Size(
+        max = 500,
+        message = "A descrição deve ter no máximo 500 caracteres."
+    )
     @Column(
         name = "description",
         nullable = false,
@@ -35,6 +50,15 @@ public class Todo {
     )
     private boolean completed;
 
+    @NotNull(message = "A prioridade é obrigatório.")
+    @Min(
+        value = 1,
+        message = "A prioridade mínima é 1."
+    )
+    @Max(
+        value = 5,
+        message = "A prioridade máxima é 5."
+    )
     @Column(
         name = "priority",
         nullable = false
