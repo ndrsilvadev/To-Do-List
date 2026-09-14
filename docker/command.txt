@@ -1,0 +1,7 @@
+docker compose config   --- Validade the file
+
+docker compose up -d    --- Start a container
+
+docker compose ps       --- Chechk the container status
+
+docker compose down     --- Remove container

@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: todolist-postgres
+    restart: "no"
+
+    environment:
+      POSTGRES_DB: ${DB_NAME:?DB_NAME não foi definida}
+      POSTGRES_USER: ${DB_USERNAME:?DB_USERNAME não foi definida}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD não foi definida}
+
+    ports:
+      - "${DB_PORT:?DB_PORT não foi definida}:5432"
+
+    volumes:
+      - /home/ndrsilva/program-dev/docker/volumes/spring-boot/postgres-todolist:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:?DB_USERNAME não foi definida} -d ${DB_NAME:?DB_NAME não foi definida}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
