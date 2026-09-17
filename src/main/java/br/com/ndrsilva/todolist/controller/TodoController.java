@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.ndrsilva.todolist.entity.Todo;
@@ -26,8 +28,10 @@ public class TodoController {
     }
     
     @PostMapping
-    List<Todo> create(@Valid @RequestBody Todo todo) {
-        return todoService.create(todo);
+    @ResponseStatus(HttpStatus.CREATED)
+    Todo create(@Valid @RequestBody Todo todo) {
+        Todo createdTodo = todoService.create(todo);
+        return createdTodo;
     }
 
     @GetMapping
