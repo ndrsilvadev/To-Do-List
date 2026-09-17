@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.ndrsilva.todolist.entity.Todo;
+import br.com.ndrsilva.todolist.exception.TodoNotFoundException;
 import br.com.ndrsilva.todolist.repository.TodoRepository;
 
 
@@ -28,8 +29,10 @@ public class TodoService {
         return todoRepository.save(todo);
     }
 
-    public List<Todo> delete(Long id) {
-        todoRepository.deleteById(id);
-        return  list();
+    public void delete(Long id) {
+        Todo todo = todoRepository.findById(id)
+            .orElseThrow(() -> new TodoNotFoundException(id));
+
+        todoRepository.delete(todo);
     }
 }

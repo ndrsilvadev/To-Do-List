@@ -46,7 +46,8 @@ public class TodoController {
     }
 
     @DeleteMapping("{id}")
-    List<Todo> delete(@PathVariable("id") Long id) {
-        return todoService.delete(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void delete(@PathVariable("id") Long id) {
+        todoService.delete(id);
     }
 }
