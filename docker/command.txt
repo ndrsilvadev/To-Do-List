@@ -5,3 +5,9 @@ docker compose up -d    --- Start a container
 docker compose ps       --- Chechk the container status
 
 docker compose down     --- Remove container
+
+docker compose \
+  --env-file .env \     --- Subindo o container a partir da pasta raiz
+  -f docker/compose.yaml \
+  up -d
+  
