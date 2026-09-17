@@ -24,9 +24,8 @@ public class TodoService {
         return todoRepository.findAllByOrderByPriorityDescTitleAsc();
     }
 
-    public List<Todo> update(Todo todo) {
-        todoRepository.save(todo);
-        return list();
+    public Todo update(Todo todo) {
+        return todoRepository.save(todo);
     }
 
     public List<Todo> delete(Long id) {

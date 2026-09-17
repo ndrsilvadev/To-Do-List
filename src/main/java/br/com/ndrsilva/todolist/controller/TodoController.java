@@ -40,8 +40,9 @@ public class TodoController {
     }
 
     @PutMapping
-    List<Todo> update(@Valid @RequestBody Todo todo) {
-        return todoService.update(todo);
+    Todo update(@Valid @RequestBody Todo todo) {
+        Todo updateTodo = todoService.update(todo);
+        return  updateTodo;
     }
 
     @DeleteMapping("{id}")
