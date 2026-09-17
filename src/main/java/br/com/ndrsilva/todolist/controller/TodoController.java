@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.ndrsilva.todolist.dto.response.TodoListResponse;
 import br.com.ndrsilva.todolist.entity.Todo;
 import br.com.ndrsilva.todolist.service.TodoService;
 import jakarta.validation.Valid;
@@ -35,8 +36,10 @@ public class TodoController {
     }
 
     @GetMapping
-    List<Todo> list() {
-        return todoService.list();
+    TodoListResponse list() {
+        List<Todo> todos = todoService.list();
+
+        return new TodoListResponse(todos.size(), todos);
     }
 
     @PutMapping
